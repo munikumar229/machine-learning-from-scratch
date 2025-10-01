@@ -2,7 +2,7 @@ import numpy as np
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-import utils
+from utils import *
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import make_regression
 from sklearn.preprocessing import StandardScaler
@@ -32,7 +32,7 @@ linear_regressor.fit(X_train,y_train)
 # Make predictions
 predictions=linear_regressor.predict(X_test)
 # Evaluate the model
-print("RSME:",utils.rsme(predictions,y_test))
+print("RSME:",rsme(predictions,y_test))
 
 # Plotting the results
 plt.figure(figsize=(8,10))
