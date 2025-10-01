@@ -19,6 +19,11 @@ def f1_score(y_pred,y):
     if prec + rec == 0:
         return 0.0
     return 2*(prec*rec)/(prec+rec)
+def cross_entropy(y_pred,y):
+    n_samples = len(y)
+    y_pred = np.clip(y_pred, 1e-15, 1 - 1e-15)  # to avoid log(0)
+    ce = -np.sum(y * np.log(y_pred)) / n_samples
+    return ce
 def mean_squared_error(y_pred,y):
     return np.mean((y_pred-y)**2)
 def rsme(y_pred,y):
