@@ -1,6 +1,6 @@
 
 import numpy as np
-import utils
+from utils import *
 class LinearRegression():
     def __init__(self,lr = 0.001,weights=None,bias = None,iter = 10000):
         self.lr = lr
@@ -19,7 +19,7 @@ class LinearRegression():
             y_pred = X @ self.weights + self.bias 
             
             if i % 1000==0:
-                loss= utils.rsme(y_pred,y)
+                loss= rsme(y_pred,y)
                 print(f"loss in {i} = {loss}")
 
             dw = (1/n_samples)*(X.T @ (y_pred-y))   # weight gradient
