@@ -17,7 +17,7 @@ class SVM:
         support_vector_indices = []
         for _ in range(self.iter):
             for idx,x_i in enumerate(X):
-                margin = y[idx] * (np.dot(self.weights,x_i)-self.bias)
+                margin = y[idx] * (np.dot(self.weights,x_i)+self.bias)
                 condition = margin >=1
                 if condition:
                     dw = 2 * self.alpha * self.weights
@@ -34,11 +34,11 @@ class SVM:
         self.support_vectors_ = X[np.unique(support_vector_indices)]
         return self
     def predict(self,X):
-        return np.sign(np.dot(X,self.weights)-self.bias)
+        return np.sign(np.dot(X,self.weights)+self.bias)
 
     def decision_function(self, X):
         """Returns the distance to the decision boundary for each sample."""
-        return np.dot(X, self.weights) - self.bias
+        return np.dot(X, self.weights) + self.bias
 def plot_svm(X, y, svm):
     plt.scatter(X[:, 0], X[:, 1], c=y, cmap='bwr', alpha=0.7)
     # Plot support vectors
